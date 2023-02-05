@@ -1,6 +1,10 @@
 const express = require("express");
 const app = express();
 
+// View engine
+app.set("view engine","ejs");
+
+// Rotas
 app.get("/",(req,res)=>{
     res.send("");
 });
