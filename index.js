@@ -4,7 +4,7 @@ const bodyParser = require("body-parser");
 const connection = require("./database/connection");
 
 // Reciving Controllers
-const categoriesControler = require("./categories/CategoriesController");
+const categoriesController = require("./categories/CategoriesController");
 
 // View engine
 app.set("view engine", "ejs");
@@ -25,7 +25,10 @@ connection
         console.log(error);
     });
 
-// outes
+// Utilizing Routes of categoriesController
+app.use("/",categoriesController);
+
+// Home Route
 app.get("/", (req, res) => {
     res.render("index");
 });
