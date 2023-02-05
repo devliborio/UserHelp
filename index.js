@@ -3,6 +3,9 @@ const app = express();
 const bodyParser = require("body-parser");
 const connection = require("./database/connection");
 
+// Reciving Controllers
+const categoriesControler = require("./categories/CategoriesController");
+
 // View engine
 app.set("view engine", "ejs");
 
@@ -22,7 +25,7 @@ connection
         console.log(error);
     });
 
-// Rotas
+// outes
 app.get("/", (req, res) => {
     res.render("index");
 });
