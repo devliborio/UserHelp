@@ -28,6 +28,7 @@ connection
 
 // Utilizing Routes of categoriesController
 app.use("/",categoriesController);
+app.use("/",articlesController);
 
 // Home Route
 app.get("/", (req, res) => {
