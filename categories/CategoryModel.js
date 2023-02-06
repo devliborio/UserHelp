@@ -12,4 +12,6 @@ const Category = connection.define("categories",{
     }
 });
 
+Category.sync({force: true}); // Isso vai forçar a criação da tabela articles toda vez que o servidor for iniciado.
+
 module.exports = Category;
