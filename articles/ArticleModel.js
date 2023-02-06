@@ -14,4 +14,6 @@ const Article = connection.define("articles",{
     }
 });
 
+Article.belongsTo(CategoryModel); // Define que um artigo pertence a uma categoria (belongs to = pertece a)
+
 module.exports = Article;
