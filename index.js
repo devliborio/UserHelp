@@ -1,11 +1,17 @@
+// Express
 const express = require("express");
 const app = express();
-const bodyParser = require("body-parser");
+
+//Connection with the database mysql
 const connection = require("./database/connection");
 
 // Reciving Controllers
 const categoriesController = require("./categories/CategoriesController");
 const articlesController = require("./articles/ArticlesController");
+
+// Reciving Models
+const ArticleModel = require("./articles/ArticleModel");
+const CategoryMordel = require("./categories/CategoryModel");
 
 // View engine
 app.set("view engine", "ejs");
@@ -14,6 +20,7 @@ app.set("view engine", "ejs");
 app.use(express.static("public"));
 
 // Body parser
+const bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
