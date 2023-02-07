@@ -19,9 +19,15 @@
             </thead>
 
             <tbody> <!--Corpo da tabela-->
-                <tr>
+                <% categories.forEach((category) => { %>
 
-                </tr>
+                    <tr>
+                        <th><%= category.id %></th>
+                        <th><%= category.title %></th>
+                        <th><%= category.slug %></th>
+                    </tr>
+
+                <% }) %>
             </tbody>
         </table>
     </div>
