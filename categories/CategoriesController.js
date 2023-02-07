@@ -30,9 +30,9 @@ router.post("/categories/save", (req, res) => {
     }
 });
 
-router.post("categories/delete",(req,res) => {
-    var id = req.body.id // Recebendo id do input
-    if(id =! undefined){
+router.post("/categories/delete",(req,res) => {
+    var id = req.body.id; // Recebendo id do input
+    if(id != undefined){
 
         if(!isNaN(id)){ // Se for número
 
