@@ -27,7 +27,7 @@
                         <th><%= category.slug %></th>
                         <th>
                             <button class="btn btn-warning">Editar</button>
-                            <form method="post" action="/categories/delete" style="display: inline;">
+                            <form method="post" action="/categories/delete" style="display: inline;" onsubmit="confirmDelete(event, this)">
                                 <input type="hidden" name="id" value="<%= category.id %>">
                                 <button class="btn btn-danger">Excluir</button>
                             </form>
@@ -41,3 +41,12 @@
 
 </body>
 <%- include ('../../partials/footer.ejs') %>
+<script>
+    function confirmDelete(event, form){
+        event.preventDefault(); // Vai impedir que o formulario seja submetido (enviado)
+        var decision = confirm("Você realmente deseja excluir?") // Pop up que aparece na tela para que o usuario posas confirmar alguma solicitação, ele retornar true ou false dependendo da resposta do usuario
+        if(decision){
+            form.submit();
+        }
+    }
+</script>
