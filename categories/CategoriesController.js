@@ -30,11 +30,11 @@ router.post("/categories/save", (req, res) => {
     }
 });
 
-router.post("/categories/delete",(req,res) => {
+router.post("/categories/delete", (req, res) => {
     var id = req.body.id; // Recebendo id do input
-    if(id != undefined){
+    if (id != undefined) {
 
-        if(!isNaN(id)){ // Se for número
+        if (!isNaN(id)) { // Se for número
 
             CategoryModel.destroy({ // Destruindo id recebido pela variavel id
                 where: {
@@ -51,6 +51,25 @@ router.post("/categories/delete",(req,res) => {
     } else {
         res.redirect("/admin/categories");
     }
+});
+
+router.get("/admin/categories/edit/:id", (req, res) => {
+    var id = req.params.id;
+
+    if(isNaN(id)){
+        res.redirect("/admin/categories");        
+    }
+
+    CategoryModel.findByPk(id)
+        .then((categories) => { // Esse é um método especifico para pesquisar um item pelo ID dele
+            if (categories != undefined) {
+                res.render("admin/categories/edit", { categories: categories });
+            } else {
+                res.redirect("/admin/categories");
+            }
+        }).catch((erro) => {
+            res.redirect("/admin/categories");
+        });
 });
 
 module.exports = router;
