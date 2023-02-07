@@ -16,7 +16,7 @@ const CategoryMordel = require("./categories/CategoryModel");
 // View engine
 app.set("view engine", "ejs");
 
-// Static
+// Static iles
 app.use(express.static("public"));
 
 // Body parser
@@ -33,7 +33,7 @@ connection
         console.log(error);
     });
 
-// Utilizing Routes of categoriesController
+// Utilizing Routes of Controllers
 app.use("/",categoriesController);
 app.use("/",articlesController);
 
