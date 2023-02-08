@@ -11,7 +11,7 @@ const articlesController = require("./articles/ArticlesController");
 
 // Reciving Models
 const ArticleModel = require("./articles/ArticleModel");
-const CategoryMordel = require("./categories/CategoryModel");
+const CategoryModel = require("./categories/CategoryModel");
 
 // View engine
 app.set("view engine", "ejs");
@@ -43,7 +43,10 @@ app.get("/", (req, res) => {
     ArticleModel.findAll({
         order: [['id', 'DESC']] // Organizando os artigos de forma decrescente
     }).then((articles) => {
-        res.render("index", { articles: articles });
+        
+        CategoryModel.findAll().then((categories)=>{
+            res.render("index", { articles: articles, categories: categories}); 
+        });
     });
 });
 
@@ -53,10 +56,12 @@ app.get("/:slug", (req, res) => {
         where: {
             slug: slug
         }
-    }).then((article) => {
+    }).then((articles) => {
 
         if (article != undefined) {
-            res.render("admin/articles/article", { article: article });
+            CategoryModel.findAll().then((categories)=>{
+                res.render("admin/articles/article", { articles: articles, categories: categories });
+            });
 
         } else {
 
