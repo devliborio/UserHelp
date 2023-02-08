@@ -1,0 +1,38 @@
+<%- include ('../../partials/header.ejs') %>
+<body>
+    <%- include ('../../partials/navbar.ejs')%>
+
+    <div class="container">
+        <hr>
+        <h2 class="text-center">Artigos</h2>
+        <a href="/admin/articles/new" class="btn btn-success">Criar novo artigo</a>
+        <hr>
+        <table class="table table-bordered text-center">
+
+            <thead> <!--Cabeçalho da tabela-->
+                <tr>
+                    <th>ID</th>
+                    <th>Título</th>
+                    <th>Slug</th>
+                    <th>Categoria</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+
+            <tbody> <!--Corpo da tabela-->
+
+            </tbody>
+        </table>
+    </div>
+
+</body>
+<%- include ('../../partials/footer.ejs') %>
+<script>
+    function confirmDelete(event, form){
+        event.preventDefault(); // Vai impedir que o formulario seja submetido (enviado)
+        var decision = confirm("Você realmente deseja excluir?") // Pop up que aparece na tela para que o usuario posas confirmar alguma solicitação, ele retornar true ou false dependendo da resposta do usuario
+        if(decision){
+            form.submit();
+        }
+    }
+</script>
