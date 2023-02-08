@@ -75,9 +75,9 @@ router.post("/categories/delete", (req, res) => {
 
 router.post("/categories/update", (req,res) => { // Atualizando o titulo da categoria através do ID dela, usando o model criado pelo sequelize.
     var id = req.body.id;
-    var title = req;body.title;
+    var title = req.body.title;
 
-    CategoryModel.update({title: title},{
+    CategoryModel.update({title: title, slug: slugify(title)},{
         where: {
             id: id
         }
