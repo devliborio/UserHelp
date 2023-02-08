@@ -13,9 +13,10 @@
                     <div class="form-group">
                       <label>Edite o título da categoria</label>
                       <input type="text" class="form-control" placeholder="Digite o novo titulo da categoria" name="title" value="<%= categories.title %>">
+                      <input type="hidden" name="id" value="<%= categories.id %>">
+                        <br>                          
+                      <button class="btn btn-success">Atualizar</button>
                     </div>
-                    <input type="hidden" name="id" value="<% categories.id %>">
-                    <button type="submit" class="btn btn-success">Atualizar</button>
                   </form>
             </div>
         </div>
