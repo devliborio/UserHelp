@@ -18,7 +18,7 @@
                             <br>
                             <textarea class="form-control" placeholder="Escreva o seu artigo aqui! 😉" name="body" id="article"></textarea>
                             <br>
-                            <button class="btn btn-success">Cadastrar</button>
+                            <button class="btn btn-success">Enviar</button>
                         </form>
                     </div>
                 </div>
@@ -30,5 +30,20 @@
         // Configurando o tinyMCE
         tinymce.init({
             selector: "#article",
+            plugins: [
+                'advlist',
+                'autolink',
+                 'link', 
+                 'image',
+                 'preview',
+                 'wordcount', 
+                 'fullscreen',
+                 'insertdatetime', 
+                 'media',
+                 'save',
+                 'table',
+                 'paste',
+                 'emoticons'
+            ]
         });
     </script>
