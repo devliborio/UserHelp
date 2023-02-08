@@ -42,7 +42,7 @@ router.post("/categories/save", (req, res) => {
             title: title,
             slug: slugify(title) // Usando o slugify para transformar o titulo da categoria em um slug.
         }).then(() => {
-            res.redirect("/")
+            res.redirect("/admin/categories");
         });
 
     } else {
