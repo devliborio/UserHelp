@@ -5,7 +5,9 @@ const ArticleModel = require("./ArticleModel");
 const slugify = require("slugify");
 
 router.get("/admin/articles", (req, res) => {
-    ArticleModel.findAll().then((articles) => {
+    ArticleModel.findAll({
+        include: [{model: CategoryModel}]
+    }).then((articles) => {
         res.render("admin/articles/index", {articles: articles});
     });
 });
