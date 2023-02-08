@@ -53,15 +53,15 @@ app.get("/:slug", (req, res) => {
         }
     }).then((article) => {
 
-        if(article != undefined){
-            res.render("")
+        if (article != undefined) {
+            res.render("admin/articles/article", { article: article });
 
         } else {
 
             res.redirect("/");
         }
     }).catch((err) => {
-        
+
         res.redirect("/");
     });
 });
