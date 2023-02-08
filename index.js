@@ -34,12 +34,15 @@ connection
     });
 
 // Utilizing Routes of Controllers
-app.use("/",categoriesController);
-app.use("/",articlesController);
+app.use("/", categoriesController);
+app.use("/", articlesController);
 
 // Home Route
 app.get("/", (req, res) => {
-    res.render("index");
+
+    ArticleModel.findAll().then((articles) => {
+        res.render("index", {articles: articles});
+    });
 });
 
 app.listen(8080, (error) => {
