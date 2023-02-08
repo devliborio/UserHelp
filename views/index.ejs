@@ -1,5 +1,33 @@
 <%- include ('partials/header.ejs') %>
 <body>
-    <%- include ('partials/navbar.ejs')%>
+    <%- include ('partials/homenavbar.ejs')%>
+
+    <br>
+    <div class="container">
+        <br>
+        <div class="jumbotron">
+            <h1 class="display-4">Bem vindo ao UserHelp!</h1>
+            <p class="lead">Este é um simples blog com o intuito de reunir diversos tópicos dos mais variados temas.</p>
+            <hr class="my-4">
+            <p>É um blog que funciona basicamente com criação de categorias e artigos e tem o intuito de instruir e entreter o maior número de pessoas possiveis, com ele você pode criar categorias e artigos e personalizar o blog com os temas do seu interesse, espero que se sinta a vontade e se divirta! 🎉</p>
+          </div>
+
+        <% articles.forEach((article) => { %>
+
+            <div class="card">
+
+                <div class="card-header">
+                    <h3> <%= article.title %> </h3>
+                </div>
+
+                <div class="card-body">
+                    <a class="btn btn-success" href="#">Ler artigo</a>
+                </div>
+
+            </div>
+            <br>
+        <% }) %>
+    </div>
+
 </body>
 <%- include ('partials/footer.ejs') %>
