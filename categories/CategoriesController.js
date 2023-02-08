@@ -7,13 +7,33 @@ router.get("/admin/categories/new", (req, res) => {
     res.render("admin/categories/new");
 });
 
-
+// Routes type get()
 router.get("/admin/categories", (req, res) => {
     CategoryModel.findAll().then((categories) => {
         res.render("admin/categories/index", { categories: categories });
     });
 });
 
+router.get("/admin/categories/edit/:id", (req, res) => {
+    var id = req.params.id;
+
+    if (isNaN(id)) {
+        res.redirect("/admin/categories");
+    }
+
+    CategoryModel.findByPk(id)
+        .then((categories) => { // Esse é um método especifico para pesquisar um item pelo ID dele
+            if (categories != undefined) {
+                res.render("admin/categories/edit", { categories: categories });
+            } else {
+                res.redirect("/admin/categories");
+            }
+        }).catch((erro) => {
+            res.redirect("/admin/categories");
+        });
+});
+
+// Routes type post()
 router.post("/categories/save", (req, res) => {
     var title = req.body.title; // Usando o body-parser para pegar input do formulario
     if (title != undefined) {
@@ -53,23 +73,17 @@ router.post("/categories/delete", (req, res) => {
     }
 });
 
-router.get("/admin/categories/edit/:id", (req, res) => {
-    var id = req.params.id;
+router.post("/categories/update", (req,res) => { // Atualizando o titulo da categoria através do ID dela, usando o model criado pelo sequelize.
+    var id = req.body.id;
+    var title = req;body.title;
 
-    if(isNaN(id)){
-        res.redirect("/admin/categories");        
-    }
-
-    CategoryModel.findByPk(id)
-        .then((categories) => { // Esse é um método especifico para pesquisar um item pelo ID dele
-            if (categories != undefined) {
-                res.render("admin/categories/edit", { categories: categories });
-            } else {
-                res.redirect("/admin/categories");
-            }
-        }).catch((erro) => {
-            res.redirect("/admin/categories");
-        });
+    CategoryModel.update({title: title},{
+        where: {
+            id: id
+        }
+    }).then(() =>{
+        res.redirect("/admin/categories");
+    })
 });
 
 module.exports = router;
