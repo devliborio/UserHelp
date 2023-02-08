@@ -40,7 +40,9 @@ app.use("/", articlesController);
 // Home Route
 app.get("/", (req, res) => {
 
-    ArticleModel.findAll().then((articles) => {
+    ArticleModel.findAll({
+        order: [['id', 'DESC']] // Organizando os artigos de forma decrescente
+    }).then((articles) => {
         res.render("index", { articles: articles });
     });
 });
