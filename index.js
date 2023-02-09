@@ -56,11 +56,11 @@ app.get("/:slug", (req, res) => {
         where: {
             slug: slug
         }
-    }).then((articles) => {
+    }).then((article) => {
 
         if (article != undefined) {
             CategoryModel.findAll().then((categories)=>{
-                res.render("admin/articles/article", { articles: articles, categories: categories });
+                res.render("admin/articles/article", { article: article, categories: categories });
             });
 
         } else {
