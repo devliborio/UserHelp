@@ -43,9 +43,9 @@ app.get("/", (req, res) => {
     ArticleModel.findAll({
         order: [['id', 'DESC']] // Organizando os artigos de forma decrescente
     }).then((articles) => {
-        
-        CategoryModel.findAll().then((categories)=>{
-            res.render("index", { articles: articles, categories: categories}); 
+
+        CategoryModel.findAll().then((categories) => {
+            res.render("index", { articles: articles, categories: categories });
         });
     });
 });
@@ -59,7 +59,7 @@ app.get("/:slug", (req, res) => {
     }).then((article) => {
 
         if (article != undefined) {
-            CategoryModel.findAll().then((categories)=>{
+            CategoryModel.findAll().then((categories) => {
                 res.render("admin/articles/article", { article: article, categories: categories });
             });
 
@@ -73,24 +73,26 @@ app.get("/:slug", (req, res) => {
     });
 });
 
-app.get("/category/:slug",(req,res) => {
+app.get("/category/:slug", (req, res) => {
     var slug = req.params.slug;
     CategoryModel.findOne({
         where: {
             slug: slug
         },
-        include: [{model: Article}]
+        include: [{ model: ArticleModel }] // join 
     }).then((category) => {
-        if(cateogry != undefined){
-            
-            
-            
+        if (category != undefined) {
+
+            CategoryModel.findAll().then((categories) => {
+                res.render("index", { articles: category.articles, categories: categories });
+            });
+
         } else {
             res.redirect("/");
         }
-    }).catch((err) =>){
-        res.redirect("/");         
-    }
+    }).catch((err) => {
+        res.redirect("/");
+    });
 });
 
 app.listen(8080, (error) => {
