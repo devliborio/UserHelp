@@ -73,6 +73,26 @@ app.get("/:slug", (req, res) => {
     });
 });
 
+app.get("/category/:slug",(req,res) => {
+    var slug = req.params.slug;
+    CategoryModel.findOne({
+        where: {
+            slug: slug
+        },
+        include: [{model: Article}]
+    }).then((category) => {
+        if(cateogry != undefined){
+            
+            
+            
+        } else {
+            res.redirect("/");
+        }
+    }).catch((err) =>){
+        res.redirect("/");         
+    }
+});
+
 app.listen(8080, (error) => {
     if (!error) {
         console.log("O servidor está rodando!")
