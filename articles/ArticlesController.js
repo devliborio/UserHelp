@@ -97,4 +97,41 @@ router.post("/articles/update", (req, res) => {
     });
 });
 
+// Sistema de paginação do projeto
+router.get("/articles/page/:num", (req, res) => {
+    var pageNum = req.params.num;
+    var offset = 0;
+
+    if (isNaN(pageNum) || pageNum == 1) {
+        offset = 0
+    } else {
+        offset = parseInt(pageNum) * 4;
+    }
+
+    ArticleModel.findAndCountAll({
+        limit: 4,
+        offset: offset
+    }).then((articles) => {
+
+        var next;
+
+        if(offset + 4 >= articles.count) {
+            next = false;
+        } else {
+            next = true;
+        }
+
+        var result = {
+            next: next,
+            articles: articles
+        }
+
+
+        CategoryModel.findAll().then((categories) => { 
+            res.render("admin/articles/page", {categories: categories, result: result});
+        });
+        
+    });
+});
+
 module.exports = router;
