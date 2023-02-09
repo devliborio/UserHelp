@@ -1,0 +1,66 @@
+<%- include ('../../partials/header.ejs') %>
+
+    <body>
+        <%- include ('../../partials/navbar.ejs')%>
+
+            <div class="container">
+                <br>
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="text-center">Edite o seu artigo</h2>
+                    </div>
+
+                    <div class="card-body">
+                        <form method="post" action="/articles/update" class="form-group">
+                            <label>Insira o novo titulo do artigo</label>
+                            <input type="hidden" value="<%= article.id %>" name="id">
+                            <input class="form-control" type="text" value="<%= article.title %>" name="title" placeholder="Digite o novo titulo do artigo">
+                            <br>
+                            <textarea class="form-control" placeholder="Escreva o seu artigo aqui! 😉" name="body" id="article"> <%- article.body %> </textarea>
+                            <br>
+                            <label>Escolha a categoria</label>
+                            <select name="category" class="form-control">
+                                <% categories.forEach((category) => { %>
+
+                                    <% if(category.id == article.categoryId) { %>
+                                        <option value="<%= category.id %>" selected> <%= category.title %></option>
+
+                                    <% } else { %>
+                                        <option value="<%= category.id %>"> <%= category.title %></option>
+
+                                    <% } %>
+                                    
+                                <% }) %>
+                            </select>
+                            <br>
+                            <button class="btn btn-success">Atualizar</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+    </body>
+    <%- include ('../../partials/footer.ejs') %>
+        <script src="/tinymce/tinymce.min.js"></script>
+        <script>
+            // Configurando o tinyMCE
+            tinymce.init({
+                selector: "#article",
+                branding: false,
+                plugins: [
+                    'advlist',
+                    'autolink',
+                    'link',
+                    'image',
+                    'preview',
+                    'wordcount',
+                    'fullscreen',
+                    'insertdatetime',
+                    'media',
+                    'save',
+                    'table',
+                    'paste',
+                    'emoticons'
+                ],
+                language: 'pt_BR'
+            });
+        </script>
