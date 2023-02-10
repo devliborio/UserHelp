@@ -1,6 +1,9 @@
 const express = require("express");
 const router = express.Router();
 
+// Importando bcryptjs
+const bcrypt = require("bcryptjs");
+
 // Receving Models
 const UserModel = require("./UserModel")
 
