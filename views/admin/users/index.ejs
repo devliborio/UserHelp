@@ -1,8 +1,32 @@
 <%- include ('../../partials/header.ejs') %>
-<body>
-    <%- include ('../../partials/navbar.ejs')%>
-
-        
-
-</body>
-<%- include ('../../partials/footer.ejs') %>
+    <body>
+        <%- include ('../../partials/navbar.ejs')%>
+    
+        <div class="container">
+            <hr>
+            <h2 class="text-center">Usuários</h2>
+            <hr>
+            <table class="table table-bordered text-center">
+    
+                <thead> <!--Cabeçalho da tabela-->
+                    <tr>
+                        <th>ID</th>
+                        <th>Email</th>
+                    </tr>
+                </thead>
+    
+                <tbody> <!--Corpo da tabela-->
+                    <% users.forEach((user) => { %>
+                        
+                        <tr>
+                            <td> <%= user.id %> </td>
+                            <td> <%= user.email %> </td>
+                        </tr>
+    
+                    <% }) %>
+                </tbody>
+            </table>
+        </div>
+    
+    </body>
+    <%- include ('../../partials/footer.ejs') %>
