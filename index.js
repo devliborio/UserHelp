@@ -41,7 +41,7 @@ app.use("/", articlesController);
 app.get("/", (req, res) => {
 
     ArticleModel.findAll({
-        order: [['id', 'DESC']] // Organizando os artigos de forma decrescente
+        order: [['id', 'DESC']], limit: 4 // Organizando os artigos de forma decrescente
     }).then((articles) => {
 
         CategoryModel.findAll().then((categories) => {
