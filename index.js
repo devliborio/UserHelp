@@ -8,6 +8,7 @@ const connection = require("./database/connection");
 // Reciving Controllers
 const categoriesController = require("./categories/CategoriesController");
 const articlesController = require("./articles/ArticlesController");
+const usersController = require("./users/UsersController");
 
 // Reciving Models
 const ArticleModel = require("./articles/ArticleModel");
@@ -36,6 +37,7 @@ connection
 // Utilizing Routes of Controllers
 app.use("/", categoriesController);
 app.use("/", articlesController);
+app.use("/", usersController);
 
 // Home Route
 app.get("/", (req, res) => {
