@@ -13,4 +13,6 @@ const User = connection.define("users", {
     }
 });
 
+// User.sync({force: true}); //Isso vai forçar a criação da tabela articles toda vez que o servidor for iniciado.
+
 module.exports = User
