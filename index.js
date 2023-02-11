@@ -20,7 +20,7 @@ const CategoryModel = require("./categories/CategoryModel");
 // View engine
 app.set("view engine", "ejs");
 
-// Static iles
+// Static files
 app.use(express.static("public"));
 
 // Body parser
@@ -36,6 +36,12 @@ connection
     }).catch((error) => {
         console.log(error);
     });
+
+// Utilizing Express-session
+app.use(session({
+    secret: "aleatoriamentevamoscolocaralgoaleatorio", cookie: { maxAge: 10000000000}
+}));
+
 
 // Utilizing Routes of Controllers
 app.use("/", categoriesController);
