@@ -2,6 +2,9 @@
 const express = require("express");
 const app = express();
 
+// Session
+const session = require("express-session");
+
 //Connection with the database mysql
 const connection = require("./database/connection");
 
