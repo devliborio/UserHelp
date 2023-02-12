@@ -42,7 +42,6 @@ app.use(session({
     secret: "aleatoriamentevamoscolocaralgoaleatorio", cookie: { maxAge: 10000000000}
 }));
 
-
 // Utilizing Routes of Controllers
 app.use("/", categoriesController);
 app.use("/", articlesController);
