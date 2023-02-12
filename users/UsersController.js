@@ -19,7 +19,39 @@ router.get("/admin/users/create", (req, res) => {
     res.render("admin/users/new");
 });
 
+router.get("/login", (req, res) => {
+    res.render("admin/users/login");
+});
+
 // Routes type post()
+router.post("/authenticate", (req,res) => {
+    var email = req.body.email;
+    var password = req.body.password;
+
+    UserModel.findOne({where: { email: email }}).then((user) => { 
+        if(user != undefined){ // Se existe um ususario com esse email
+            // Validar senha
+            var correctPass = bcrypt.compareSync(password, user.password); // Comparando senha que foi colcocada no login com a senha que foi cadastrada no banco de dados pela rota de cadastro atraves da HASH.
+
+            if(correctPass){
+                // Se a senha bater, faça:
+                req.session.user = { // permitindo login no blog através da sessão de usuário
+                    id: user.id,
+                    email: user.email
+                }
+                res.json(req.session.user);
+            } else {
+                // Se a senha não bater, faça:
+                res.send("A senha não está correta!")
+            }
+
+        } else {
+            res.send("Email não cadastrado no banco de dados!");
+        }
+    });
+
+});
+
 router.post("/users/create", (req, res) => { // Salvando dados do usuario no banco de dados (mysql)
     var email = req.body.email;
     var password = req.body.password;
