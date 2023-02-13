@@ -3,6 +3,7 @@ const router = express.Router();
 const CategoryModel = require("../categories/CategoryModel");
 const ArticleModel = require("./ArticleModel");
 const slugify = require("slugify");
+const adminAuth = require("../middlewares/adminAuth");
 
 
 // Routes type get()
