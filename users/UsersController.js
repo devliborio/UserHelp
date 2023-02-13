@@ -9,7 +9,7 @@ const bcrypt = require("bcryptjs");
 const UserModel = require("./UserModel")
 
 // Routes type get()
-router.get("/admin/users", adminAuth,(req, res) => {
+router.get("/admin/users", adminAuth, (req, res) => {
     UserModel.findAll().then((users) => {
         res.render("admin/users/index", { users: users });
 
@@ -24,17 +24,22 @@ router.get("/login", (req, res) => {
     res.render("admin/users/login");
 });
 
+router.get("/logout", (req, res) => {
+    req.session.user = undefined;
+    res.redirect("/");
+});
+
 // Routes type post()
-router.post("/authenticate", (req,res) => {
+router.post("/authenticate", (req, res) => {
     var email = req.body.email;
     var password = req.body.password;
 
-    UserModel.findOne({where: { email: email }}).then((user) => { 
-        if(user != undefined){ // Se existe um ususario com esse email
+    UserModel.findOne({ where: { email: email } }).then((user) => {
+        if (user != undefined) { // Se existe um ususario com esse email
             // Validar senha
             var correctPass = bcrypt.compareSync(password, user.password); // Comparando senha que foi colcocada no login com a senha que foi cadastrada no banco de dados pela rota de cadastro atraves da HASH.
 
-            if(correctPass){
+            if (correctPass) {
                 // Se a senha bater, faça:
                 req.session.user = { // permitindo login no blog através da sessão de usuário
                     id: user.id,
