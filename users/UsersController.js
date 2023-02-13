@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const adminAuth = require("../middlewares/adminAuth");
 
 // Importando bcryptjs
 const bcrypt = require("bcryptjs");
@@ -8,7 +9,7 @@ const bcrypt = require("bcryptjs");
 const UserModel = require("./UserModel")
 
 // Routes type get()
-router.get("/admin/users", (req, res) => {
+router.get("/admin/users", adminAuth,(req, res) => {
     UserModel.findAll().then((users) => {
         res.render("admin/users/index", { users: users });
 
