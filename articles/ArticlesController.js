@@ -7,7 +7,7 @@ const adminAuth = require("../middlewares/adminAuth");
 
 
 // Routes type get()
-router.get("/admin/articles", (req, res) => {
+router.get("/admin/articles", adminAuth, (req, res) => {
     ArticleModel.findAll({
         include: [{ model: CategoryModel }]
     }).then((articles) => {
@@ -15,13 +15,13 @@ router.get("/admin/articles", (req, res) => {
     });
 });
 
-router.get("/admin/articles/new", (req, res) => {
+router.get("/admin/articles/new", adminAuth, (req, res) => {
     CategoryModel.findAll().then((categories) => {
         res.render("admin/articles/new", { categories: categories });
     });
 });
 
-router.get("/admin/articles/edit/:id", (req, res) => {
+router.get("/admin/articles/edit/:id", adminAuth, (req, res) => {
     var id = req.params.id;
     var title = req.body.title;
     var body = req.body.body;
@@ -43,7 +43,7 @@ router.get("/admin/articles/edit/:id", (req, res) => {
 });
 
 // Routes type post()
-router.post("/articles/save", (req, res) => {
+router.post("/articles/save", adminAuth, (req, res) => {
     var title = req.body.title;
     var body = req.body.body;
     var category = req.body.category;
@@ -58,7 +58,7 @@ router.post("/articles/save", (req, res) => {
     });
 });
 
-router.post("/articles/delete", (req, res) => {
+router.post("/articles/delete", adminAuth, (req, res) => {
     var id = req.body.id; // Recebendo id do input
     if (id != undefined) {
 
@@ -81,7 +81,7 @@ router.post("/articles/delete", (req, res) => {
     }
 });
 
-router.post("/articles/update", (req, res) => {
+router.post("/articles/update", adminAuth, (req, res) => {
     var id = req.body.id;
     var title = req.body.title;
     var body = req.body.body;
@@ -107,7 +107,7 @@ router.get("/articles/page/:num", (req, res) => {
         offset = 0
     } else {
         offset = (parseInt(page) - 1) * 4;
-    }   
+    }
 
     ArticleModel.findAndCountAll({
         limit: 4,
@@ -116,7 +116,7 @@ router.get("/articles/page/:num", (req, res) => {
     }).then((articles) => {
 
         var next;
-        if(offset + 4 >= articles.count) {
+        if (offset + 4 >= articles.count) {
             next = false;
         } else {
             next = true;
@@ -129,9 +129,9 @@ router.get("/articles/page/:num", (req, res) => {
         }
 
 
-        CategoryModel.findAll().then((categories) => { 
-            res.render("admin/articles/page", {result: result, categories: categories});
-        });          
+        CategoryModel.findAll().then((categories) => {
+            res.render("admin/articles/page", { result: result, categories: categories });
+        });
     });
 });
 
