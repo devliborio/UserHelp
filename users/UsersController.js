@@ -40,7 +40,7 @@ router.post("/authenticate", (req,res) => {
                     id: user.id,
                     email: user.email
                 }
-                res.json(req.session.user);
+                res.redirect("/admin/articles");
             } else {
                 // Se a senha não bater, faça:
                 res.send("A senha não está correta!")
