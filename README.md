@@ -8,9 +8,9 @@
 
 ### ⚙ **Demonstração do Site**
 
-Aqui está uma demonstração em vídeo do blog hospedado em localhost.
+Aqui está uma demonstração em vídeo (<a href="https://www.youtube.com/watch?v=wbzXr2pcUIU&ab_channel=GuilhermeLib%C3%B3rio">Clique aqui</a>) do blog hospedado em localhost.
 
-[![Demo UserHep](https://www.youtube.com/watch?v=wbzXr2pcUIU&ab_channel=GuilhermeLib%C3%B3rio)
+[![Demo UserHep](https://raw.githubusercontent.com/devliborio/user-images/master/Img/user-help.png?token=GHSAT0AAAAAAB6PTI42TYGVYG7RQ2M67IGWY7OP6PQ)](https://www.youtube.com/watch?v=wbzXr2pcUIU&ab_channel=GuilhermeLib%C3%B3rio)
 
 ---
 
