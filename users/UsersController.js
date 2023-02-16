@@ -16,7 +16,7 @@ router.get("/admin/users", adminAuth, (req, res) => {
     });
 });
 
-router.get("/admin/users/create", (req, res) => {
+router.get("/create/users", (req, res) => {
     res.render("admin/users/new");
 });
 
